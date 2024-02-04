@@ -1,0 +1,35 @@
+.form-box {
+    margin: 20px;
+}
+
+.form-box form div {
+    text-align: center;
+    margin: 10px;
+    display: flex;
+} input {
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+} 
+.form-box form div label{
+    width: 100px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.form-box form button {
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(40, 197, 22);
+    cursor: pointer;
+    color: #000;
+    font-size: 15px;
+}
+
+
