@@ -9,11 +9,11 @@ function Login() {
         Axios.post("http://localhost:3001/api/login", {
             email: email,
             password: password
-        }).then((response) => {
-            console.log(response.data.status);
+        }).then(async (response) => {
+            console.log(response.data.err);
             if (response.data.status === "ok") {
                 console.log(response.data.token);
-                Axios.get(`http://localhost:3001/api/users/${email}`).then((response) => {
+                await Axios.get(`http://localhost:3001/api/users/${email}`).then((response) => {
                     console.log(response.data);
                     localStorage.setItem(
                         "user",
@@ -25,9 +25,9 @@ function Login() {
             window.location.href = '/home';
         }).catch((error) => {
             console.log(error);
-            allert("error");
+            alert("error");
         })
-        };
+    };
 
   return (
     <div>

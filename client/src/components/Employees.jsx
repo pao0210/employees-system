@@ -32,8 +32,9 @@ function Employees(props) {
     const userTemp = JSON.parse(temp);
     Axios.get(`http://localhost:3001/api/users/${userTemp.email}`).then(
       (response) => {
-        console.log(response.data.result[0]);
+        // console.log(response.data.result[0]);
         setUser(response.data.result[0]);
+        props.sendUser(response.data.result[0]);
       }
     );
 
@@ -52,16 +53,15 @@ function Employees(props) {
 
   return (
     <>
-      <Navbar />
+      <Navbar isStaff={user.isStaff} />
       {user.isStaff === 0 ? (
         <div>
           <h1 style={{ margin: "10px" }}>My information</h1>
           <div className="employees">
             <div className="employee">
-              <p>{user.name}</p>
-              <p>{user.surname}</p>
-              <p>{user.position}</p>
-              <p>{user.salary}</p>
+              <p>Name: {user.name} {user.surname}</p>
+              <p>Position: {user.position}</p>
+              <p>Salary: {user.salary}</p>
               <div
                 style={{
                   justifyContent: "flex-end",
@@ -69,16 +69,6 @@ function Employees(props) {
                   display: "flex",
                 }}
               >
-                <Link to={`/update/${user.id}`}>
-                  <button style={{ margin: "5px" }}>Update</button>
-                </Link>
-                <button
-                  style={{ margin: "5px" }}
-                  onClick={handleDelete}
-                  value={user.id}
-                >
-                  Delete
-                </button>
               </div>
             </div>
           </div>
@@ -91,10 +81,9 @@ function Employees(props) {
               const link = `/update/${employee.id}`;
               return (
                 <div className="employee" key={index}>
-                  <p>{employee.name}</p>
-                  <p>{employee.surname}</p>
-                  <p>{employee.position}</p>
-                  <p>{employee.salary}</p>
+                  <p>Name: {employee.name} {employee.surname}</p>
+                  <p>Position: {employee.position}</p>
+                  <p>Salary: {employee.salary}</p>
                   <div
                     style={{
                       justifyContent: "flex-end",

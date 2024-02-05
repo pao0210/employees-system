@@ -7,17 +7,22 @@ function InsertEmp() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
         const name = event.target.name.value;
         const surname = event.target.surname.value;
         const position = event.target.position.value;
         const salary = event.target.salary.value;
         console.log(name);
         Axios.post("http://localhost:3001/api/insert", {
+            email: email,
+            password: password,
             name: name,
             surname: surname,
             position: position,
             salary: salary
-        }).then(() => {
+        }).then((response) => {
+            console.log(response.data.status);
             alert("success");
             window.location.reload();
         })
@@ -30,6 +35,10 @@ function InsertEmp() {
         <h1>Insert information of new employee</h1>
         <div className='form-box'>
             <form onSubmit={handleSubmit}>
+                <label>Email</label>
+                <input type="text" placeholder='Email' name="email" />
+                <label>Password</label>
+                <input type="password" placeholder='Password' name="password" />
             <div>
                 <label>Name</label>
                 <input type="text" placeholder='Name' name="name" />
